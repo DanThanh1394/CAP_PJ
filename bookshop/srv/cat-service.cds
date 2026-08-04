@@ -1,5 +1,6 @@
-@odata service CatalogService {
-  entity Books { 
-    key ID:Integer; title:String; author:String;
-  }
-} 
+using { my.bookshop as my } from '../db/schema';
+service AdminService  {
+  entity Books as projection on my.Books;
+  entity Authors as projection on my.Authors;
+  entity Categories as projection on my.Categories;
+}
