@@ -1,0 +1,27 @@
+# Node.js dependencies
+node_modules/
+target/
+_out/
+gen/
+
+# CDS build artifacts
+.cdsrc-private.json
+default-*.json
+*.sqlite
+
+# MTA (Multi-Target Application)
+mta_archives/
+*_mta_build_tmp
+*.mtar
+
+# Other
+.DS_Store
+.env
+*.log
+
+# VSCode settings
+.vscode/
+
+# SAP-specific temporary files
+.sap/
+.hdb/
