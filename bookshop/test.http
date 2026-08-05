@@ -1,0 +1,71 @@
+# get data author with id=42 & name=Douglas Adams
+# GET http://localhost:4004/odata/v4/admin/Authors(ID=42,name='Douglas Adams')?
+# ----------------------------------------------------------
+
+#post data author
+# POST http://localhost:4004/odata/v4/admin/Authors
+# Content-Type: application/json
+
+# {
+#   "createdAt": "2026-08-05T06:40:05.012Z",
+#   "createdBy": "anonymous",
+#   "modifiedAt": "2026-08-05T06:40:05.012Z",
+#   "modifiedBy": "anonymous",
+#   "ID": 1050,
+#   "name": "Tester"
+# }
+
+# POST http://localhost:4004/odata/v4/admin/Authors
+# Content-Type: application/json
+
+# {
+#   "createdAt": "2026-08-05T06:40:05.012Z",
+#   "createdBy": "anonymous",
+#   "modifiedAt": "2026-08-05T06:40:05.012Z",
+#   "modifiedBy": "anonymous",
+#   "ID": 204,
+#   "name": "Den Thui"
+# }
+
+# POST http://localhost:4004/odata/v4/admin/Authors
+# Content-Type: application/json
+
+# {
+#   "createdAt": "2026-08-05T06:40:05.012Z",
+#   "createdBy": "anonymous",
+#   "modifiedAt": "2026-08-05T06:40:05.012Z",
+#   "modifiedBy": "anonymous",
+#   "ID": 1980,
+#   "name": "Aurora"
+# }
+# ----------------------------------------------------------
+
+# filter data author theo id >150
+# # eq : equal : $filter = ID eq 150
+# GET http://localhost:4004/odata/v4/admin/Authors?$filter=ID gt 100
+# ----------------------------------------------------------
+
+# Sort data
+# GET http://localhost:4004/odata/v4/admin/Authors?orderby=name asc
+# ----------------------------------------------------------
+
+# PATCH data
+# PATCH http://localhost:4004/odata/v4/admin/Authors(42)
+# Content-Type: application/json
+
+# {
+#   "name": "Anna Bella"
+# }
+
+#delete 1 data
+# DELETE http://localhost:4004/odata/v4/admin/Authors(42)
+# GET http://localhost:4004/odata/v4/admin/Authors(42)
+
+# pagination (lấy 2 set đầu), skip
+# GET http://localhost:4004/odata/v4/admin/Authors?$top=2
+
+GET http://localhost:4004/odata/v4/admin/Authors?$top=2&$skip=3
+
+
+# &$select=title,stock
+# &$expand=currency
