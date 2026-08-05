@@ -9,7 +9,7 @@ entity Books : managed {
   price  : Decimal(9,2);
   currency : Currency;
   category : Association to Categories;
-  author : Association to Authors;
+  authors : Association to Authors;
 }
 
 entity Authors : managed {
