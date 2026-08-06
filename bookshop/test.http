@@ -2,6 +2,23 @@
 # GET http://localhost:4004/odata/v4/admin/Authors(ID=42,name='Douglas Adams')?
 # ----------------------------------------------------------
 
+
+# ### Tạo bản ghi test cho CommonDemo
+POST http://localhost:4004/odata/v4/admin/CommonDemo
+Content-Type: application/json
+
+{
+  "name": "Demo Record",
+  "country": "VN",
+  "currency": "VND",
+  "language": "vi"
+}
+
+# ----------------------------------------------------------
+
+
+
+
 #post data author
 # POST http://localhost:4004/odata/v4/admin/Authors
 # Content-Type: application/json
@@ -40,6 +57,27 @@
 # }
 # ----------------------------------------------------------
 
+# test composition
+# POST http://localhost:4004/odata/v4/admin/Authors
+# Content-Type: application/json
+
+# {
+#   "name": "New Author",
+#   "books": [
+#     { "title": "Book A", "price": 10, "stock": 5 },
+#     { "title": "Book B", "price": 15, "stock": 3 }
+#   ]
+# }
+
+### Update author name
+# PATCH http://localhost:4004/odata/v4/admin/Authors('fbf001dd-3d28-40d3-a713-1331a10ad7ac')
+# Content-Type: application/json
+
+# {
+#   "name": "J.K. Rowling"
+# }
+# ----------------------------------------------------------
+
 # filter data author theo id >150
 # # eq : equal : $filter = ID eq 150
 # GET http://localhost:4004/odata/v4/admin/Authors?$filter=ID gt 100
@@ -64,8 +102,9 @@
 # pagination (lấy 2 set đầu), skip
 # GET http://localhost:4004/odata/v4/admin/Authors?$top=2
 
-GET http://localhost:4004/odata/v4/admin/Authors?$top=2&$skip=3
+# GET http://localhost:4004/odata/v4/admin/Authors?$top=2&$skip=3
 
 
 # &$select=title,stock
 # &$expand=currency
+
