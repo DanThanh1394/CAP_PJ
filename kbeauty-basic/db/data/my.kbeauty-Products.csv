@@ -1,0 +1,8 @@
+ID,name,price,stock,description,manufacture,expiryMonth,status,brand_ID,category_ID
+P001,Green Tea Serum,350000,100,Hydrating facial serum,Korea,24,Available,B001,C001
+P002,Water Sleeping Mask,450000,50,Overnight sleeping mask,Korea,36,Available,B002,C007
+P003,Lip Tint Moisture,200000,200,Moisturizing lip tint,Korea,18,Available,B003,C002
+P004,First Care Serum,850000,30,Premium anti aging serum,Korea,24,Available,B004,C001
+P005,Rice Water Cleanser,180000,150,Gentle facial cleanser,Korea,24,Available,B005,C004
+P006,Aloe Vera Gel,120000,300,Soothing body gel,Korea,36,Available,B006,C005
+P007,All Around Safe Block,250000,80,Daily sunscreen cream,Korea,24,OutOfStock,B007,C006

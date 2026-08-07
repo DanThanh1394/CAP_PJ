@@ -1,0 +1,8 @@
+ID,name,description,targetGender,productType,status,priority,remark
+C001,Skincare,Skin care products,Unisex,Face Care,Active,1,Top Seller
+C002,Makeup,Cosmetic makeup products,Female,Beauty,Active,2,Popular
+C003,Haircare,Hair treatment products,Unisex,Hair Care,Active,3,Stable
+C004,Cleansing,Facial cleansing products,Unisex,Cleanser,Active,4,Daily Use
+C005,Bodycare,Body care products,Unisex,Body Care,Active,5,Normal
+C006,Sun Care,Sun protection products,Unisex,Sunscreen,Active,6,Seasonal
+C007,Mask Pack,Face mask products,Unisex,Mask,Active,7,Promotion

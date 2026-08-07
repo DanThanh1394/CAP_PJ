@@ -1,0 +1,8 @@
+ID,name,country,foundedYear,ceoName,website,email,status
+B001,Innisfree,Korea,2000,Kim Jiho,www.innisfree.com,contact@innisfree.com,Active
+B002,Laneige,Korea,1994,Park Hana,www.laneige.com,contact@laneige.com,Active
+B003,Etude House,Korea,1985,Lee Minho,www.etudehouse.com,contact@etudehouse.com,Active
+B004,Sulwhasoo,Korea,1966,Choi Jisung,www.sulwhasoo.com,contact@sulwhasoo.com,Active
+B005,The Face Shop,Korea,2003,Han Junho,www.thefaceshop.com,contact@thefaceshop.com,Active
+B006,Nature Republic,Korea,2009,Kang Sejin,www.naturerepublic.com,contact@naturerepublic.com,Active
+B007,Missha,Korea,2000,Yoon Sangho,www.missha.com,contact@missha.com,Inactive
