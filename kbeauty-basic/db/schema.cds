@@ -24,7 +24,8 @@ entity Categories : managed, cuid {
   products : Association to many Products on products.category = $self;
 }
 
-entity Products : managed, cuid {
+entity Products : managed {
+key ID : String(10);
   name      : String(111);
   price     : Decimal(9,2);
   stock     : Integer;
