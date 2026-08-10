@@ -1,0 +1,164 @@
+<mvc:View
+    controllerName="kbeauty.controller.Main"
+    height="100%"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:uit="sap.ui.table"
+    xmlns:mdc="sap.ui.mdc"
+    xmlns:mdct="sap.ui.mdc.table"
+    xmlns:vm="sap.ui.fl.variants">
+
+    <f:DynamicPage id="page">
+        <!-- HEADER TITLE & VARIANT MANAGEMENT -->
+        <f:title>
+            <f:DynamicPageTitle id="idDynamicPageTitle">
+                <f:heading>
+                    <HBox id="idHeaderHBox" alignItems="Center">
+                        <!-- Main Title (Styling can be customized via CSS class pinkTitle) -->
+                        <Title 
+                            id="idTitleHeader" 
+                            text="KBeauty Product Management" 
+                            level="H2" 
+                            titleStyle="H2" 
+                            class="pinkTitle sapUiSmallMarginEnd"/>
+                        <vm:VariantManagement id="variants" for="filterbar, productTable"/>
+                    </HBox>
+                </f:heading>
+
+                <f:actions>
+                    <Button 
+                        id="idBtnAddProduct"
+                        text="Add Product"
+                        type="Emphasized"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- HEADER FILTER BAR -->
+        <f:header>
+            <f:DynamicPageHeader id="idDynamicPageHeader" pinnable="true">
+                <mdc:FilterBar 
+                    id="filterbar" 
+                    delegate="{
+                        name: 'sap/ui/mdc/FilterBarDelegate'
+                    }"
+                    p13nMode="Item,Value">
+                    
+                    <!-- Basic Search Field -->
+                    <mdc:basicSearchField>
+                        <mdc:FilterField 
+                            id="idBasicSearch"
+                            delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"
+                            dataType="sap.ui.model.type.String"
+                            placeholder="Search Product..."
+                            conditions="{$filters>/conditions/$search}"
+                            propertyKey="$search"
+                            maxConditions="1"/>
+                    </mdc:basicSearchField>
+
+                    <!-- Filter Items -->
+                    <mdc:filterItems>
+                        <mdc:FilterField
+                            id="ffBrand"
+                            label="Brand"
+                            propertyKey="brand/name"
+                            dataType="sap.ui.model.type.String"
+                            conditions="{$filters>/conditions/brand}"
+                            delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
+
+                        <mdc:FilterField
+                            id="ffCategory"
+                            label="Category"
+                            propertyKey="category/name"
+                            dataType="sap.ui.model.type.String"
+                            conditions="{$filters>/conditions/category}"
+                            delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
+                    </mdc:filterItems>
+                </mdc:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- CONTENT SECTION -->
+        <f:content>
+            <VBox id="idMainVBox" fitContainer="true">
+                
+                <!-- GRID TABLE (sap.ui.table.Table) -->
+                <uit:Table
+                    id="productTable"
+                    rows="{
+                        path: '/Products',
+                        parameters: {
+                            $expand: 'brand,category'
+                        }
+                    }"
+                    selectionMode="MultiToggle"
+                    rowActionCount="1">
+                    <uit:extension>
+                        <OverflowToolbar id="idTableToolbar">
+                            <Title id="idTableTitle" text="Products" level="H2"/>
+                        </OverflowToolbar>
+                    </uit:extension>
+
+                    <uit:columns>
+                        <uit:Column id="colName" width="12rem">
+                            <Label id="lblColName" text="Name" />
+                            <uit:template>
+                                <Text id="txtCellName" text="{name}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colPrice" width="8rem">
+                            <Label id="lblColPrice" text="Price" />
+                            <uit:template>
+                                <Text id="txtCellPrice" text="{price}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colStock" width="6rem">
+                            <Label id="lblColStock" text="Stock" />
+                            <uit:template>
+                                <Text id="txtCellStock" text="{stock}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colStatus" width="8rem">
+                            <Label id="lblColStatus" text="Status" />
+                            <uit:template>
+                                <Text id="txtCellStatus" text="{status}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colBrand" width="10rem">
+                            <Label id="lblColBrand" text="Brand" />
+                            <uit:template>
+                                <Text id="txtCellBrand" text="{brand/name}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colCategory" width="10rem">
+                            <Label id="lblColCategory" text="Category" />
+                            <uit:template>
+                                <Text id="txtCellCategory" text="{category/name}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+                    </uit:columns>
+
+                    <uit:rowActionTemplate>
+                        <uit:RowAction id="idRowAction">
+                            <uit:items>
+                                <uit:RowActionItem
+                                    id="idRowActionItemNav"
+                                    type="Navigation"
+                                    press=".onRowNavigationPress" />
+                            </uit:items>
+                        </uit:RowAction>
+                    </uit:rowActionTemplate>
+                </uit:Table>
+
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

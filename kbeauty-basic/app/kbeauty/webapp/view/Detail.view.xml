@@ -1,0 +1,42 @@
+<mvc:View
+    controllerName="kbeauty.controller.Detail"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f">
+
+    <f:DynamicPage id="detailPage">
+        <!-- HEADER -->
+        <f:title>
+            <f:DynamicPageTitle id="idDetailTitle">
+                <f:heading>
+                    <Title id="idTitleDetail" text="{name}"/>
+                </f:heading>
+                <f:navigationActions>
+                    <Button
+                        id="idBtnNavBack"
+                        icon="sap-icon://decline"
+                        type="Transparent"
+                        press=".onNavBack"/>
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- CONTENT SECTION -->
+        <f:content>
+            <VBox id="idDetailVBox" class="sapUiSmallMargin">
+                <ObjectHeader
+                    id="idObjectHeader"
+                    title="{name}"
+                    number="{price}"
+                    numberUnit="VND">
+                    <attributes>
+                        <ObjectAttribute id="attrStatus" title="Status" text="{status}" />
+                        <ObjectAttribute id="attrStock" title="Stock" text="{stock}" />
+                        <ObjectAttribute id="attrBrand" title="Brand" text="{brand/name}" />
+                        <ObjectAttribute id="attrCategory" title="Category" text="{category/name}" />
+                    </attributes>
+                </ObjectHeader>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

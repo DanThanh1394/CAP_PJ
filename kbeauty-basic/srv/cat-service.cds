@@ -6,4 +6,3 @@ service CatalogService {
   entity Brands     as projection on service.Brands;
   entity Categories as projection on service.Categories;
 }
-
