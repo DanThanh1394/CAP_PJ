@@ -1,0 +1,6 @@
+OrderID;Equipment;Description;Plant;Type;Priority;Status;Planner;Scheduled;technician_ID;TechnicianSkill
+MO-1001;EQ-001;Pump A preventive maintenance;1000;PREVENTIVE;HIGH;IN_PROCESS;John;2026-08-10 -> 2026-08-11;T-001;Mechanical
+MO-1002;EQ-002;Compressor inspection;1000;INSPECTION;MEDIUM;OPEN;Anna;2026-08-12 -> 2026-08-12;T-002;Electrical
+MO-1005;EQ-003;Critical motor repair;2000;CORRECTIVE;CRITICAL;OPEN;John;2026-08-10 -> 2026-08-10;T-001;Mechanical
+MO-1007;EQ-004;Quarterly motor service;2000;PREVENTIVE;LOW;COMPLETED;Linh;2026-08-05 -> 2026-08-06;T-004;Electrical
+MO-1008;EQ-001;Emergency pump check;1000;CORRECTIVE;CRITICAL;CANCELLED;John;2026-08-07 -> 2026-08-07;T-001;Mechanical

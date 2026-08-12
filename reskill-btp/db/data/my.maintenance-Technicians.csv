@@ -1,0 +1,5 @@
+ID;Name;Skill;WorkCenter;Available;AssignedOperations
+T-001;Anabell;Mechanical;WC-001;YES;3
+T-002;Billy;Electrical;WC-002;YES;2
+T-003;Mina;Mechanical;WC-003;NO;1
+T-004;Leon;Electrical;WC-004;YES;1
