@@ -32,7 +32,8 @@
                     <Button 
                         id="idBtnAddProduct"
                         text="Add Product"
-                        type="Emphasized"/>
+                        type="Emphasized"
+                        press=".onAddProduct"/>
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
@@ -43,7 +44,8 @@
                 <mdc:FilterBar 
                     id="filterbar" 
                     delegate="{ name: 'sap/ui/mdc/FilterBarDelegate' }"
-                    p13nMode="Item,Value">
+                    p13nMode="Item,Value"
+                    search=".onFilterSearch">
                     
                     <!-- Basic Search Field -->
                     <mdc:basicSearchField>
@@ -64,7 +66,7 @@
                             label="Brand"
                             propertyKey="brand/name"
                             dataType="sap.ui.model.type.String"
-                            conditions="{$filters>/conditions/brand}"
+                            conditions="{$filters>/conditions/brand/name}"
                             valueHelp="vhBrand"
                             delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
 
@@ -73,7 +75,7 @@
                             label="Category"
                             propertyKey="category/name"
                             dataType="sap.ui.model.type.String"
-                            conditions="{$filters>/conditions/category}"
+                            conditions="{$filters>/conditions/category/}"
                             valueHelp="vhCategory"
                             delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
                     </mdc:filterItems>

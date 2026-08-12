@@ -10,27 +10,22 @@ sap.ui.define([
          * Attaches route pattern matched event listener.
          */
         onInit: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
+            const oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("RouteDetail").attachPatternMatched(this._onObjectMatched, this);
         },
 
         /**
          * Binds the view element to the target entity using OData V4 binding path.
-         * @param {sap.ui.base.Event} oEvent - Pattern matched event object
+         * @param {sap.ui.base.Event} oEvent Pattern matched event object
          * @private
          */
         _onObjectMatched: function (oEvent) {
-            var sProductId = oEvent.getParameter("arguments").productId;
-            var oView = this.getView();
+            const sProductId = oEvent.getParameter("arguments").productId;
+            const oView = this.getView();
+            const sPath = `/Products('${sProductId}')`;
 
-            // Construct proper OData V4 element path with key predicate
-            // var sPath = "/Products('" + sProductId + sProductId + "')"; //`${}`
-            var sPath = `/Products('${sProductId}')`
-
-            // Unbind previous context to clean up resources before re-binding
             oView.unbindElement();
 
-            // Bind element with standard OData V4 parameters
             oView.bindElement({
                 path: sPath,
                 parameters: {
@@ -40,12 +35,8 @@ sap.ui.define([
                     dataRequested: function () {
                         oView.setBusy(true);
                     },
-                    dataReceived: function (oData) {
+                    dataReceived: function () {
                         oView.setBusy(false);
-                        if (oData.getParameter("error")) {
-                            // Log error if OData call fails
-                            console.error("Failed to fetch product detail:", oData.getParameter("error"));
-                        }
                     }
                 }
             });
@@ -55,15 +46,13 @@ sap.ui.define([
          * Navigates back to the main list or previous browser history state.
          */
         onNavBack: function () {
-            var oHistory = History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
+            const oHistory = History.getInstance();
+            const sPreviousHash = oHistory.getPreviousHash();
+            const oRouter = this.getOwnerComponent().getRouter();
 
-            if (sPreviousHash === undefined) {
-                // window.history.go(-1);
-                 var oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("RouteDetail", { productId: 'P005'});
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
             } else {
-                var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("RouteMain", {}, true);
             }
         }
