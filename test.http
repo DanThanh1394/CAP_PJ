@@ -1,0 +1,7 @@
+# GET http://localhost:4004/ThanhTD68/Products
+
+# PATCH http://localhost:4004/ThanhTD68/Products('P008')
+#     {
+#         "price": 550000,
+#         "stock": 120
+#     }
