@@ -8,7 +8,8 @@
     xmlns:core="sap.ui.core"
     xmlns:uit="sap.ui.table"
     xmlns:mdc="sap.ui.mdc"
-    xmlns:mdct="sap.ui.mdc.table"
+    xmlns:mdcvh="sap.ui.mdc.valuehelp"
+    xmlns:mdcvhc="sap.ui.mdc.valuehelp.content"
     xmlns:vm="sap.ui.fl.variants">
 
     <f:DynamicPage id="page">
@@ -17,7 +18,6 @@
             <f:DynamicPageTitle id="idDynamicPageTitle">
                 <f:heading>
                     <HBox id="idHeaderHBox" alignItems="Center">
-                        <!-- Main Title (Styling can be customized via CSS class pinkTitle) -->
                         <Title 
                             id="idTitleHeader" 
                             text="KBeauty Product Management" 
@@ -42,9 +42,7 @@
             <f:DynamicPageHeader id="idDynamicPageHeader" pinnable="true">
                 <mdc:FilterBar 
                     id="filterbar" 
-                    delegate="{
-                        name: 'sap/ui/mdc/FilterBarDelegate'
-                    }"
+                    delegate="{ name: 'sap/ui/mdc/FilterBarDelegate' }"
                     p13nMode="Item,Value">
                     
                     <!-- Basic Search Field -->
@@ -67,6 +65,7 @@
                             propertyKey="brand/name"
                             dataType="sap.ui.model.type.String"
                             conditions="{$filters>/conditions/brand}"
+                            valueHelp="vhBrand"
                             delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
 
                         <mdc:FilterField
@@ -75,8 +74,77 @@
                             propertyKey="category/name"
                             dataType="sap.ui.model.type.String"
                             conditions="{$filters>/conditions/category}"
+                            valueHelp="vhCategory"
                             delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"/>
                     </mdc:filterItems>
+
+                    <mdc:dependents>
+                        <!-- VALUE HELP BRAND -->
+                        <mdc:ValueHelp id="vhBrand">
+                            <mdc:dialog>
+                                <mdcvh:Dialog id="dlgBrand" title="Select Brand">
+                                    <mdcvhc:MTable
+                                        id="vhContentBrandTable"
+                                        title="Brands"
+                                        keyPath="ID"
+                                        descriptionPath="name">
+                                        <mdcvhc:table>
+                                            <Table 
+                                                id="tblBrandVH"
+                                                items="{ path: '/Brands' }">
+                                                <columns>
+                                                    <Column id="colVhBrandId"><Text id="txtColVhBrandId" text="ID"/></Column>
+                                                    <Column id="colVhBrandName"><Text id="txtColVhBrandName" text="Brand Name"/></Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem id="itemVhBrand" type="Active">
+                                                        <cells>
+                                                            <Text id="txtCellVhBrandId" text="{ID}"/>
+                                                            <Text id="txtCellVhBrandName" text="{name}"/>
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </mdcvhc:table>
+                                    </mdcvhc:MTable>
+                                    <mdcvhc:Conditions id="vhContentBrandCond" title="Define Conditions"/>
+                                </mdcvh:Dialog>
+                            </mdc:dialog>
+                        </mdc:ValueHelp>
+
+                        <!-- VALUE HELP CATEGORY -->
+                        <mdc:ValueHelp id="vhCategory">
+                            <mdc:dialog>
+                                <mdcvh:Dialog id="dlgCategory" title="Select Category">
+                                    <mdcvhc:MTable
+                                        id="vhContentCategoryTable"
+                                        title="Categories"
+                                        keyPath="ID"
+                                        descriptionPath="name">
+                                        <mdcvhc:table>
+                                            <Table 
+                                                id="tblCategoryVH"
+                                                items="{ path: '/Categories' }">
+                                                <columns>
+                                                    <Column id="colVhCatId"><Text id="txtColVhCatId" text="ID"/></Column>
+                                                    <Column id="colVhCatName"><Text id="txtColVhCatName" text="Category Name"/></Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem id="itemVhCategory" type="Active">
+                                                        <cells>
+                                                            <Text id="txtCellVhCatId" text="{ID}"/>
+                                                            <Text id="txtCellVhCatName" text="{name}"/>
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </mdcvhc:table>
+                                    </mdcvhc:MTable>
+                                    <mdcvhc:Conditions id="vhContentCategoryCond" title="Define Conditions"/>
+                                </mdcvh:Dialog>
+                            </mdc:dialog>
+                        </mdc:ValueHelp>
+                    </mdc:dependents>
                 </mdc:FilterBar>
             </f:DynamicPageHeader>
         </f:header>
