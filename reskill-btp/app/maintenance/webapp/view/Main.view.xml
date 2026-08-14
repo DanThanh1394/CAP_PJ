@@ -1,0 +1,261 @@
+<mvc:View
+    controllerName="maintenance.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    
+    <tnt:ToolPage id="idToolPage">
+        <!-- HEADER TOP BAR -->
+        <tnt:header>
+            <tnt:ToolHeader id="idToolHeader">
+                <Title id="idAppTitle" text="Maintenance Management Cockpit" wrapping="false"/>
+                <Label id="idTargetInfo" text="Full Fiori Mockup - OData V4 Target"/>
+                <ToolbarSpacer id="idHeaderSpacer"/>
+                <Button id="idUserBtn" text="DEV V" type="Transparent"/>
+            </tnt:ToolHeader>
+        </tnt:header>
+
+        <!-- LEFT NAVIGATION MENU WITH itemSelect EVENT -->
+        <tnt:sideContent>
+            <tnt:SideNavigation id="idSideNavigation" itemSelect="onSideNavSelect">
+                <tnt:NavigationList id="idNavList" selectedKey="orders">
+                    <tnt:NavigationListItem id="idNavOrders" key="orders" text="Maintenance Orders" icon="sap-icon://document"/>
+                    <tnt:NavigationListItem id="idNavDashboard" key="dashboard" text="Operations Dashboard" icon="sap-icon://sys-monitor"/>
+                    <tnt:NavigationListItem id="idNavEquipment" key="equipment" text="Equipment" icon="sap-icon://machine"/>
+                    <tnt:NavigationListItem id="idNavTechnicians" key="technicians" text="Technicians" icon="sap-icon://employee"/>
+                    <tnt:NavigationListItem id="idNavAudit" key="audit" text="Audit &amp; History" icon="sap-icon://history"/>
+
+                    <tnt:NavigationListGroup id="idGroupChallenge" text="CHALLENGE">
+                        <tnt:NavigationListItem id="idNavProcessRules" key="process_rules" text="Process &amp; Rules" icon="sap-icon://hint"/>
+                    </tnt:NavigationListGroup>
+                </tnt:NavigationList>
+            </tnt:SideNavigation>
+        </tnt:sideContent>
+
+        <!-- MAIN CONTENT AREA (DYNAMIC CONTAINER) -->
+        <tnt:mainContents>
+            <NavContainer id="idNavContainer">
+                <!-- PAGE 1: MAINTENANCE ORDERS -->
+                <Page id="pageOrders" title="Maintenance Orders" showHeader="true">
+                    <headerContent>
+                        <Button id="idCreateBtn" text="+ Create" type="Emphasized"/>
+                        <Button id="idMassChangeBtn" text="Mass Change"/>
+                        <Button id="idExportBtn" text="Export"/>
+                    </headerContent>
+                    <content>
+                        <!-- KPI CARDS -->
+                        <layout:Grid id="idKPIGrid" defaultSpan="XL2 L2 M4 S12" class="sapUiTinyMargin">
+                            <GenericTile id="tileOpen" header="Open" subheader="Needs action">
+                                <TileContent id="tcOpen"><NumericContent id="ncOpen" value="2" valueColor="Neutral" /></TileContent>
+                            </GenericTile>
+                            <GenericTile id="tileInProcess" header="In Process" subheader="Currently executing">
+                                <TileContent id="tcInProcess"><NumericContent id="ncInProcess" value="1" valueColor="Neutral" /></TileContent>
+                            </GenericTile>
+                            <GenericTile id="tileCritical" header="Critical" subheader="High business impact">
+                                <TileContent id="tcCritical"><NumericContent id="ncCritical" value="2" valueColor="Critical" /></TileContent>
+                            </GenericTile>
+                            <GenericTile id="tileOverdue" header="Overdue" subheader="Past scheduled end">
+                                <TileContent id="tcOverdue"><NumericContent id="ncOverdue" value="1" valueColor="Error" /></TileContent>
+                            </GenericTile>
+                            <GenericTile id="tileCost" header="Est. Cost" subheader="Current selection">
+                                <TileContent id="tcCost" ><NumericContent id="ncCost" value="$42.8" scale="K" valueColor="Good" /></TileContent>
+                            </GenericTile>
+                        </layout:Grid>
+
+                        <!-- ADVANCED FILTER BAR -->
+                        <Panel id="idFilterPanel" headerText="Advanced Filter Bar" expandable="true" expanded="true" class="sapUiTinyMargin">
+                            <layout:Grid id="idFilterGrid" defaultSpan="XL3 L3 M6 S12">
+                                
+                                <!-- Search Input -->
+                                <VBox id="vbSearch">
+                                    <Label id="lblSearch" text="Search"/>
+                                    <Input id="inpSearch" placeholder="Order / Equipment / Description"/>
+                                </VBox>
+
+                                <!-- Equipment Dropdown -->
+                                <VBox id="vbEq">
+                                    <Label id="lblEq" text="Equipment"/>
+                                    <Select id="selEq" selectedKey="All" width="100%">
+                                        <core:Item id="itmEqAll" key="All" text="All"/>
+                                        <core:Item id="itmEq1" key="EQ-001" text="EQ-001"/>
+                                        <core:Item id="itmEq2" key="EQ-002" text="EQ-002"/>
+                                        <core:Item id="itmEq3" key="EQ-003" text="EQ-003"/>
+                                        <core:Item id="itmEq4" key="EQ-004" text="EQ-004"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Plant Dropdown -->
+                                <VBox id="vbPlant">
+                                    <Label id="lblPlant" text="Plant"/>
+                                    <Select id="selPlant" selectedKey="All" width="100%">
+                                        <core:Item id="itmPlantAll" key="All" text="All"/>
+                                        <core:Item id="itmPlant1000" key="1000" text="1000"/>
+                                        <core:Item id="itmPlant2000" key="2000" text="2000"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Status Dropdown -->
+                                <VBox id="vbStatus">
+                                    <Label id="lblStatus" text="Status"/>
+                                    <Select id="selStatus" selectedKey="All" width="100%">
+                                        <core:Item id="itmStatusAll" key="All" text="All"/>
+                                        <core:Item id="itmStatusOpen" key="OPEN" text="Open"/>
+                                        <core:Item id="itmStatusInProcess" key="IN_PROCESS" text="In_Process"/>
+                                        <core:Item id="itmStatusCompleted" key="COMPLETED" text="Completed"/>
+                                        <core:Item id="itmStatusCancelled" key="CANCELLED" text="Cancelled"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Priority Dropdown -->
+                                <VBox id="vbPriority">
+                                    <Label id="lblPriority" text="Priority"/>
+                                    <Select id="selPriority" selectedKey="All" width="100%">
+                                        <core:Item id="itmPriAll" key="All" text="All"/>
+                                        <core:Item id="itmPriLow" key="LOW" text="Low"/>
+                                        <core:Item id="itmPriMed" key="MEDIUM" text="Medium"/>
+                                        <core:Item id="itmPriHigh" key="HIGH" text="High"/>
+                                        <core:Item id="itmPriCrit" key="CRITICAL" text="Critical"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Maintenance Type Dropdown -->
+                                <VBox id="vbMaintType">
+                                    <Label id="lblMaintType" text="Maintenance Type"/>
+                                    <Select id="selMaintType" selectedKey="All" width="100%">
+                                        <core:Item id="itmTypeAll" key="All" text="All"/>
+                                        <core:Item id="itmTypePrev" key="PREVENTIVE" text="Preventive"/>
+                                        <core:Item id="itmTypeInsp" key="INSPECTION" text="Inspection"/>
+                                        <core:Item id="itmTypeCorr" key="CORRECTIVE" text="Corrective"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Planner Dropdown -->
+                                <VBox id="vbPlanner">
+                                    <Label id="lblPlanner" text="Planner"/>
+                                    <Select id="selPlanner" selectedKey="All" width="100%">
+                                        <core:Item id="itmPlannerAll" key="All" text="All"/>
+                                        <core:Item id="itmPlannerJohn" key="John" text="John"/>
+                                        <core:Item id="itmPlannerAnna" key="Anna" text="Anna"/>
+                                        <core:Item id="itmPlannerLinh" key="Linh" text="Linh"/>
+                                    </Select>
+                                </VBox>
+
+                                <!-- Scheduled Date From -->
+                                <VBox id="vbDate">
+                                    <Label id="lblDate" text="Scheduled Date From"/>
+                                    <DatePicker id="dpScheduledDate" placeholder="mm/dd/yyyy" width="100%"/>
+                                </VBox>
+
+                            </layout:Grid>
+
+                            <HBox id="hbFilterBtns" class="sapUiTinyMarginTop">
+                                <Button id="btnGo" text="Go" type="Emphasized" class="sapUiTinyMarginEnd" press="onFilterSearch"/>
+                                <Button id="btnClear" text="Clear" class="sapUiTinyMarginEnd" press="onFilterClear"/>
+                                <Button id="btnEqVH" text="Equipment Value Help" class="sapUiTinyMarginEnd"/>
+                                <Button id="btnAdapt" text="Adapt Filters"/>
+                            </HBox>
+                        </Panel>
+
+                        <!-- TABLE -->
+                        <Table
+                            id="idOrdersTable"
+                            mode="SingleSelectLeft"
+                            class="sapUiTinyMargin"
+                            items="{path: '/MaintenanceOrders', parameters: {$expand: 'technician'}}">
+                            <headerToolbar>
+                                <OverflowToolbar id="idTableToolbar">
+                                    <Title id="idTableTitle" text="Maintenance Orders (5)"/>
+                                    <ToolbarSpacer id="idToolbarSpacer"/>
+                                    <Button id="idAssignBtn" text="Assign" type="Emphasized" press="onAssignPress"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="colOrder"><Text id="txtColOrder" text="Order"/></Column>
+                                <Column id="colEquipment"><Text id="txtColEquipment" text="Equipment"/></Column>
+                                <Column id="colDescription"><Text id="txtColDescription" text="Description"/></Column>
+                                <Column id="colPlant"><Text id="txtColPlant" text="Plant"/></Column>
+                                <Column id="colType"><Text id="txtColType" text="Type"/></Column>
+                                <Column id="colPriority"><Text id="txtColPriority" text="Priority"/></Column>
+                                <Column id="colStatus"><Text id="txtColStatus" text="Status"/></Column>
+                                <Column id="colPlanner"><Text id="txtColPlanner" text="Planner"/></Column>
+                                <Column id="colScheduled"><Text id="txtColScheduled" text="Scheduled"/></Column>
+                                <Column id="colTechSkill"><Text id="txtColTechSkill" text="Required Skill"/></Column>
+                                <Column id="colTechnician"><Text id="txtColTechnician" text="Assigned Technician"/></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem id="cliOrderRow">
+                                    <cells>
+                                        <ObjectIdentifier id="txtOrderID" title="{OrderID}"/>
+                                        <Text id="txtEquipment" text="{Equipment}"/>
+                                        <Text id="txtDescription" text="{Description}"/>
+                                        <Text id="txtPlant" text="{Plant}"/>
+                                        <Text id="txtType" text="{Type}"/>
+                                        <Text id="txtPriority" text="{Priority}"/>
+                                        <ObjectStatus id="txtStatus" text="{Status}" state="{= ${Status} === 'IN_PROCESS' ? 'Warning' : (${Status} === 'COMPLETED' ? 'Success' : (${Status} === 'CANCELLED' ? 'Error' : 'None')) }" />
+                                        <Text id="txtPlanner" text="{Planner}"/>
+                                        <Text id="txtScheduled" text="{ScheduledDate}"/>
+                                        <Text id="txtTechSkill" text="{TechnicianSkill}"/>
+                                        <Text id="txtTechName" text="{technician/Name}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+
+                <!-- PAGE 2: OPERATIONS DASHBOARD -->
+                <Page id="pageDashboard" title="Operations Dashboard" showHeader="true">
+                    <content>
+                        <IllustratedMessage id="imDashboard" illustrationType="sapIllu-Balloons" title="Operations Dashboard" description="Theo dõi chỉ số vận hành tổng quan."/>
+                    </content>
+                </Page>
+
+                <!-- PAGE 3: EQUIPMENT -->
+                <Page id="pageEquipment" title="Equipment Management" showHeader="true">
+                    <content>
+                        <IllustratedMessage id="imEquipment" illustrationType="sapIllu-Box" title="Equipment Management" description="Danh sách và thông tin thiết bị máy móc."/>
+                    </content>
+                </Page>
+
+                <!-- PAGE 4: TECHNICIANS -->
+                <Page id="pageTechnicians" title="Technicians List" showHeader="true">
+                    <content>
+                        <Table id="idTechniciansTable" items="{/Technicians}" class="sapUiTinyMargin">
+                            <headerToolbar>
+                                <OverflowToolbar id="idTechToolbar">
+                                    <Title id="idTechTitle" text="Technicians List"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column id="colTechID"><Text id="t1" text="ID"/></Column>
+                                <Column id="colTechName"><Text id="t2" text="Name"/></Column>
+                                <Column id="colSkill"><Text id="t3" text="Skill"/></Column>
+                                <Column id="colAvail"><Text id="t4" text="Available"/></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem id="cliTechRow">
+                                    <cells>
+                                        <Text id="st1" text="{ID}"/>
+                                        <Text id="st2" text="{Name}"/>
+                                        <Text id="st3" text="{Skill}"/>
+                                        <ObjectStatus id="st4" text="{Available}" state="{= ${Available} === 'YES' ? 'Success' : 'Error'}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Page>
+
+                <!-- PAGE 5: AUDIT & HISTORY -->
+                <Page id="pageAudit" title="Audit &amp; History" showHeader="true">
+                    <content>
+                        <IllustratedMessage id="imAudit" illustrationType="sapIllu-History" title="Audit &amp; History" description="Lịch sử thao tác và nhật ký kiểm toán hệ thống."/>
+                    </content>
+                </Page>
+            </NavContainer>
+        </tnt:mainContents>
+    </tnt:ToolPage>
+</mvc:View>
