@@ -28,7 +28,7 @@
                     id="idObjectHeader"
                     title="{name}"
                     number="{price}"
-                    numberUnit="VND">
+                    numberUnit="KRW">
                     <attributes>
                         <ObjectAttribute id="attrStatus" title="Status" text="{status}" />
                         <ObjectAttribute id="attrStock" title="Stock" text="{stock}" />

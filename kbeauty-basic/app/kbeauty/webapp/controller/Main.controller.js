@@ -1,8 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
-], function (Controller, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast",
+    "sap/ui/core/Fragment"
+], function (Controller, Filter, FilterOperator, MessageToast, Fragment) {
     "use strict";
 
     return Controller.extend("kbeauty.controller.Main", {
@@ -122,6 +124,83 @@ sap.ui.define([
             oRouter.navTo("RouteDetail", {
                 productId: sProductId
             });
+        },
+
+        /**
+         * Handles the press event of the "Add Product" button.
+         * Loads and opens the Add Product dialog fragment lazily.
+         */
+        onAddProductPress: function () {
+            const oView = this.getView();
+
+            // Instantiate dialog fragment lazily if not already loaded
+            if (!this._oAddDialog) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "kbeauty.view.AddProductDialog",
+                    controller: this
+                }).then(function (oDialog) {
+                    this._oAddDialog = oDialog;
+                    oView.addDependent(oDialog);
+                    this._oAddDialog.open();
+                }.bind(this));
+            } else {
+                this._oAddDialog.open();
+            }
+        },
+
+        /**
+         * Handles the save action triggered from the Add Product dialog.
+         * Validates inputs, creates a new product record, and updates the local model payload.
+         */
+        onSaveProduct: function () {
+            // Retrieve values from input fields and ComboBoxes
+            const sId = this.byId("inpAddId").getValue();
+            const sName = this.byId("inpAddName").getValue();
+            const sPrice = this.byId("inpAddPrice").getValue();
+            const sStock = this.byId("inpAddStock").getValue();
+            const sStatus = this.byId("cmbAddStatus").getValue();
+            const sExpiry = this.byId("cmbAddExpiry").getValue();
+            const sBrand = this.byId("cmbAddBrand").getValue();
+            const sCategory = this.byId("cmbAddCategory").getValue();
+
+            // Validate mandatory fields
+            if (!sId || !sName) {
+                MessageToast.show("Please enter both Product ID and Name.");
+                return;
+            }
+
+            const oTable = this.byId("productTable");
+            const oModel = oTable.getModel();
+
+            // Append new record with all attributes to JSON Model payload
+            const aProducts = oModel.getProperty("/Products") || [];
+            aProducts.push({
+                ID: sId,
+                name: sName,
+                price: parseFloat(sPrice) || 0,
+                stock: parseInt(sStock, 10) || 0,
+                status: sStatus || "Available",
+                expiryMonths: parseInt(sExpiry, 10) || 24,
+                brand: { name: sBrand },
+                category: { name: sCategory },
+                currency: "KRW"
+            });
+
+            oModel.setProperty("/Products", aProducts);
+            MessageToast.show("Product added successfully!");
+
+            // Reset inputs and close dialog
+            this.onCloseAddDialog();
+        },
+
+        /**
+         * Closes the Add Product dialog instance if open.
+         */
+        onCloseAddDialog: function () {
+            if (this._oAddDialog) {
+                this._oAddDialog.close();
+            }
         }
     });
 });

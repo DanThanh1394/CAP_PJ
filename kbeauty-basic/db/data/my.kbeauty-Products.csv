@@ -1,8 +1,51 @@
 ID,name,price,stock,description,manufacture,expiryMonth,status,brand_ID,category_ID
 P001,Green Tea Serum,350000,100,Hydrating facial serum,Korea,24,Available,B001,C001
-P002,Water Sleeping Mask,450000,50,Overnight sleeping mask,Korea,36,Available,B002,C007
+P002,Water Sleeping Mask,450000,5,Overnight sleeping mask,Korea,36,Available,B002,C007
 P003,Lip Tint Moisture,200000,200,Moisturizing lip tint,Korea,18,Available,B003,C002
-P004,First Care Serum,850000,30,Premium anti aging serum,Korea,24,Available,B004,C001
+P004,First Care Serum,850000,8,Premium anti aging serum,Korea,24,Available,B004,C001
 P005,Rice Water Cleanser,180000,150,Gentle facial cleanser,Korea,24,Available,B005,C004
 P006,Aloe Vera Gel,120000,300,Soothing body gel,Korea,36,Available,B006,C005
-P007,All Around Safe Block,250000,80,Daily sunscreen cream,Korea,24,OutOfStock,B007,C006
+P007,All Around Safe Block,250000,0,Daily sunscreen cream,Korea,24,OutOfStock,B007,C006
+P008,Snail Truecica Toner,320000,45,Repairing skin toner,Korea,24,Available,B001,C001
+P009,BHA Blackhead Power Liquid,380000,3,Exfoliating liquid toner,Korea,24,Available,B002,C001
+P010,Glow Deep Serum,290000,80,Rice and Alpha Arbutin serum,Korea,24,Available,B003,C001
+P011,Centella Ampoule,310000,120,Soothing centella ampoule,Korea,36,Available,B004,C001
+P012,Heartleaf Soothing Toner,270000,2,Calming facial toner,Korea,24,Available,B005,C001
+P013,Dynasty Cream,420000,60,Nourishing face cream,Korea,24,Available,B003,C001
+P014,Super Volcanic Clay Mask,310000,95,Pore clearing clay mask,Korea,36,Available,B001,C007
+P015,Lip Sleeping Mask Berry,390000,7,Nourishing lip treatment,Korea,36,Available,B002,C002
+P016,Dear Darling Water Gel Tint,110000,180,Vibrant lip gel tint,Korea,18,Available,B003,C002
+P017,Concentrated Ginseng Cream,4500000,4,Luxurious anti-aging cream,Korea,24,Available,B004,C001
+P018,Jeju Volcanic Cleansing Foam,210000,110,Deep cleansing foam,Korea,24,Available,B005,C004
+P019,Soothing Gel 92% Aloe,130000,250,Multi-use aloe gel,Korea,36,Available,B006,C005
+P020,Soft Finish Sun Milk,280000,9,Lightweight UV sun milk,Korea,24,Available,B007,C006
+P021,Green Tea Seed Eye Cream,410000,40,Moisturizing eye cream,Korea,24,Available,B001,C001
+P022,Cica Slept Mask,480000,25,Skin barrier overnight mask,Korea,36,Available,B002,C007
+P023,SoonJung 2x Barrier Cream,340000,6,Hypoallergenic face cream,Korea,24,Available,B003,C001
+P024,Essential Balancing Water,1200000,15,Hydrating ginseng toner,Korea,24,Available,B004,C001
+P025,Rice Ceramide Moisture Emulsion,230000,75,Moisturizing face emulsion,Korea,24,Available,B005,C001
+P026,Real Squeeze Sheet Mask,35000,500,Hydrating sheet mask,Korea,12,Available,B006,C007
+P027,Time Revolution Essence,680000,1,First treatment essence,Korea,24,Available,B007,C001
+P028,Retinol Cica Repair Ampoule,520000,32,Gentle retinol ampoule,Korea,24,Available,B001,C001
+P029,Radian-C Cream,550000,18,Vitamin C brightening cream,Korea,24,Available,B002,C001
+P030,Fixing Tint Analog Rose,260000,90,Matte non-smudge lip tint,Korea,18,Available,B003,C002
+P031,Gentle Cleansing Oil,720000,22,Deep makeup cleansing oil,Korea,24,Available,B004,C004
+P032,Mango Seed Cleansing Foam,190000,65,Rich foam facial wash,Korea,24,Available,B005,C004
+P033,Jeju Bamboo Soothing Gel,140000,0,Refreshing body gel,Korea,36,OutOfStock,B006,C005
+P034,Safe Block Essence Sun,260000,85,Hydrating daily sun essence,Korea,24,Available,B007,C006
+P035,Black Tea Youth Ampoule,640000,12,Anti-fatigue night ampoule,Korea,24,Available,B001,C001
+P036,Neo Cushion Matte,420000,30,Long-wearing matte cushion,Korea,24,Available,B002,C002
+P037,Look At My Eyes Shadow,90000,140,Single powder eyeshadow,Korea,24,Available,B003,C002
+P038,Overnight Vitalizing Mask,1100000,8,Herbal nourishment mask,Korea,24,Available,B004,C007
+P039,Herb Day 365 Cleansing Foam,150000,110,Daily herbal cleansing wash,Korea,24,Available,B005,C004
+P040,Argan Essential Hair Essence,220000,45,Nourishing hair oil essence,Korea,36,Available,B006,C003
+P041,Chogongjin Geum Sul Toner,890000,5,Premium oriental herbal toner,Korea,24,Available,B007,C001
+P042,Volcanic Pore Cleansing Foam,200000,130,Pore sebum control wash,Korea,24,Available,B001,C004
+P043,Water Bank Blue Hyaluronic Cream,590000,28,Intense hydration cream,Korea,24,Available,B002,C001
+P044,Sunprise Must Daily Sun,240000,0,Lightweight UV protection,Korea,24,OutOfStock,B003,C006
+P045,Perfecting Cushion,1350000,14,Flawless coverage cushion,Korea,24,Available,B004,C002
+P046,Jeju Volcanic Nose Pack,18000,300,Blackhead removal strip,Korea,12,Available,B005,C007
+P047,Argan Essential Hair Pack,210000,55,Deep conditioning hair mask,Korea,36,Available,B006,C003
+P048,Super Aqua Ultra Hyalron Cream,430000,38,10-layer hyaluronic cream,Korea,24,Available,B007,C001
+P049,Bija Cica Balm EX,360000,21,Trouble care cica balm,Korea,24,Available,B001,C001
+P050,Cream Skin Refiner,460000,10,2-in-1 toner and cream,Korea,24,Available,B002,C001

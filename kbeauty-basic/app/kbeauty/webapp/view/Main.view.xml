@@ -3,6 +3,7 @@
     height="100%"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:m="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core"
@@ -23,18 +24,10 @@
                             text="KBeauty Product Management" 
                             level="H2" 
                             titleStyle="H2" 
-                            class="pinkTitle sapUiSmallMarginEnd"/>
+                            class="HeaderTitle sapUiSmallMarginEnd"/>
                         <vm:VariantManagement id="variants" for="filterbar, productTable"/>
                     </HBox>
                 </f:heading>
-
-                <f:actions>
-                    <Button 
-                        id="idBtnAddProduct"
-                        text="Add Product"
-                        type="Emphasized"
-                        press=".onAddProduct"/>
-                </f:actions>
             </f:DynamicPageTitle>
         </f:title>
 
@@ -53,7 +46,7 @@
                             id="idBasicSearch"
                             delegate="{name: 'sap/ui/mdc/field/FieldBaseDelegate'}"
                             dataType="sap.ui.model.type.String"
-                            placeholder="Search Product..."
+                            placeholder="Product Name"
                             conditions="{$filters>/conditions/$search}"
                             propertyKey="$search"
                             maxConditions="1"/>
@@ -85,6 +78,7 @@
                         <mdc:ValueHelp id="vhBrand">
                             <mdc:dialog>
                                 <mdcvh:Dialog id="dlgBrand" title="Select Brand">
+
                                     <mdcvhc:MTable
                                         id="vhContentBrandTable"
                                         title="Brands"
@@ -168,50 +162,92 @@
                     rowActionCount="1">
                     <uit:extension>
                         <OverflowToolbar id="idTableToolbar">
-                            <Title id="idTableTitle" text="Products" level="H2"/>
+                            <Title id="idTableTitle" text="PRODUCTS INFORMATION" level="H2" class="customTitleColor"/>
+                           
+                            <ToolbarSpacer id="tbSpacer"/>
+                            <Button 
+                                id="idBtnAddProduct"
+                                text="Add Product"
+                                type="Emphasized"
+                                class="customAddBtn"
+                                press=".onAddProductPress"/>
                         </OverflowToolbar>
                     </uit:extension>
 
                     <uit:columns>
-                        <uit:Column id="colName" width="12rem">
+                        <!-- ID -->
+                        <uit:Column id="colID" width="6rem" hAlign="Center">
+                            <Label id="lblColID" text="ID" />
+                            <uit:template>
+                                <Text id="txtCellID" text="{ID}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <uit:Column id="colName" width="12rem" hAlign="Center">
                             <Label id="lblColName" text="Name" />
                             <uit:template>
                                 <Text id="txtCellName" text="{name}" wrapping="false"/>
                             </uit:template>
                         </uit:Column>
 
-                        <uit:Column id="colPrice" width="8rem">
-                            <Label id="lblColPrice" text="Price" />
+                        <uit:Column id="colPrice" width="8rem" hAlign="Center">
+                            <m:Label id="lblColPrice" text="Price" />
                             <uit:template>
-                                <Text id="txtCellPrice" text="{price}" wrapping="false"/>
+                                <m:Text id="txtCellPrice" text="₩ {price}" wrapping="false"/>
                             </uit:template>
                         </uit:Column>
 
-                        <uit:Column id="colStock" width="6rem">
-                            <Label id="lblColStock" text="Stock" />
+                        <!-- STOCK -->
+                        <uit:Column id="colStock" width="6rem" hAlign="Center">
+                            <m:Label id="lblColStock" text="Stock" />
                             <uit:template>
-                                <Text id="txtCellStock" text="{stock}" wrapping="false"/>
+                               <m:ObjectStatus 
+                                    id="objStatusStock" 
+                                    text="{stock}" 
+                                    state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
                             </uit:template>
                         </uit:Column>
 
-                        <uit:Column id="colStatus" width="8rem">
-                            <Label id="lblColStatus" text="Status" />
+                        <!-- Status -->
+                        <uit:Column id="colStatus" width="8rem" hAlign="Center">
+                            <m:Label id="lblColStatus" text="Status" />
                             <uit:template>
-                                <Text id="txtCellStatus" text="{status}" wrapping="false"/>
+                                <m:ObjectStatus 
+                                    id="objStatus"
+                                    text="{= Number(${stock}) === 0 ? 'OutOfStock' : (Number(${stock}) &lt;= 20 ? 'Low Stock' : 'Available')}"
+                                    state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
                             </uit:template>
                         </uit:Column>
 
-                        <uit:Column id="colBrand" width="10rem">
+                        <!-- Expiry Month -->
+                        <uit:Column id="colExpiryMonth" width="6rem" hAlign="Center">
+                            <Label id="lblColExpiryMonth" text="Expiry Month" />
+                            <uit:template>
+                                <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <!-- Brand -->
+                        <uit:Column id="colBrand" width="9rem" hAlign="Center" >
                             <Label id="lblColBrand" text="Brand" />
                             <uit:template>
                                 <Text id="txtCellBrand" text="{brand/name}" wrapping="false"/>
                             </uit:template>
                         </uit:Column>
 
-                        <uit:Column id="colCategory" width="10rem">
+                        <!-- Category -->
+                        <uit:Column id="colCategory" width="9rem" hAlign="Center">
                             <Label id="lblColCategory" text="Category" />
                             <uit:template>
                                 <Text id="txtCellCategory" text="{category/name}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+
+                        <!-- Description -->
+                        <uit:Column id="colDescription" width="12rem" hAlign="Center">
+                            <Label id="lblColDescription" text="Description" />
+                            <uit:template>
+                                <Text id="txtCellDescription" text="{description}" wrapping="false"/>
                             </uit:template>
                         </uit:Column>
                     </uit:columns>
