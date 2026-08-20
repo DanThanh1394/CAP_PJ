@@ -1,2 +1,12 @@
-.pinkTitle {
-    color: #78d8cb !important;}
+.HeaderTitle {
+    color: #000000 !important;}
+
+    /* PRODUCT INFORMATION */
+.customTitleColor {
+    color: #311681f6 !important;}
+
+   /* Add Button */
+.customAddBtn .sapMBtnInner {
+    background-color: #000000 !important; 
+    color: #ffffff !important;
+    border-color: #000000 !important;}

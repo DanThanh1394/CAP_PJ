@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="dlgAddProduct" title="Add New Product">
+        <f:SimpleForm id="formAddProduct" editable="true" layout="ColumnLayout">
+            <!-- Mandatory Inputs -->
+            <Label id="lblAddId" text="Product ID" required="true"/>
+            <Input id="inpAddId" placeholder="e.g. P011"/>
+            
+            <Label id="lblAddName" text="Product Name" required="true"/>
+            <Input id="inpAddName" placeholder="Enter product name"/>
+            
+            <!-- Standard Inputs / ComboBoxes -->
+            <Label id="lblAddPrice" text="Price (KRW)"/>
+            <Input id="inpAddPrice" type="Number" placeholder="e.g. 300000"/>
+            
+            <Label id="lblAddStock" text="Stock"/>
+            <Input id="inpAddStock" type="Number" placeholder="e.g. 50"/>
+
+            <Label id="lblAddStatus" text="Status"/>
+            <ComboBox id="cmbAddStatus" placeholder="Select or type status">
+                <core:Item id="itemStatus1" key="Available" text="Available"/>
+                <core:Item id="itemStatus2" key="Low Stock" text="Low Stock"/>
+                <core:Item id="itemStatus3" key="OutOfStock" text="OutOfStock"/>
+            </ComboBox>
+
+            <Label id="lblAddExpiry" text="Expiry Months"/>
+            <ComboBox id="cmbAddExpiry" placeholder="Select or type expiry months">
+                <core:Item id="itemExp1" key="12" text="12"/>
+                <core:Item id="itemExp2" key="24" text="24"/>
+                <core:Item id="itemExp3" key="36" text="36"/>
+            </ComboBox>
+
+            <Label id="lblAddBrand" text="Brand"/>
+            <ComboBox id="cmbAddBrand" placeholder="Select or type brand" items="{/Brands}">
+                <core:Item id="itemBrand" key="{ID}" text="{name}"/>
+            </ComboBox>
+
+            <Label id="lblAddCategory" text="Category"/>
+            <ComboBox id="cmbAddCategory" placeholder="Select or type category" items="{/Categories}">
+                <core:Item id="itemCategory" key="{ID}" text="{name}"/>
+            </ComboBox>
+        </f:SimpleForm>
+        <beginButton>
+            <Button id="btnAddSave" text="Save" type="Emphasized" press=".onSaveProduct"/>
+        </beginButton>
+        <endButton>
+            <Button id="btnAddCancel" text="Cancel" press=".onCloseAddDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
