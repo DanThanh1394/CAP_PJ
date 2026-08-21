@@ -115,6 +115,13 @@
       "target": [
         "TargetDetail"
           ]
+        },
+        {
+          "name": "RouteManage",
+          "pattern": "manage",
+          "target": [
+            "TargetManage"
+          ]
         }
       ],
       "targets": {
@@ -125,6 +132,10 @@
         "TargetDetail": {
         "id": "Detail",
         "name": "Detail"
+      },
+        "TargetManage": {
+      "id": "Manage",
+      "name": "Manage"
       }
       }
     },

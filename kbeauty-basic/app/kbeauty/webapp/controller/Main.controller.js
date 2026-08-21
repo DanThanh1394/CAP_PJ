@@ -131,22 +131,8 @@ sap.ui.define([
          * Loads and opens the Add Product dialog fragment lazily.
          */
         onAddProductPress: function () {
-            const oView = this.getView();
-
-            // Instantiate dialog fragment lazily if not already loaded
-            if (!this._oAddDialog) {
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "kbeauty.view.AddProductDialog",
-                    controller: this
-                }).then(function (oDialog) {
-                    this._oAddDialog = oDialog;
-                    oView.addDependent(oDialog);
-                    this._oAddDialog.open();
-                }.bind(this));
-            } else {
-                this._oAddDialog.open();
-            }
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("RouteManage");
         },
 
         /**
