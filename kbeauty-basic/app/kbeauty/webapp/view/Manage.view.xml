@@ -100,7 +100,6 @@
                         </columns>
 
                         <!-- Table Items Template -->
-                         <!-- neu ID co gia tri thi editable = falsecon nguoc lai se la true -->
                         <items>
                             <ColumnListItem id="itemManageProductRow">
                                 <cells>
