@@ -170,7 +170,6 @@
                                 id="idBtnAddProduct"
                                 text="Add Product"
                                 type="Emphasized"
-                                class="customAddBtn"
                                 press=".onAddProductPress"/>
                         </OverflowToolbar>
                     </uit:extension>
