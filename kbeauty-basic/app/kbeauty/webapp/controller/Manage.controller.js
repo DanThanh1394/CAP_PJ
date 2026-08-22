@@ -38,8 +38,10 @@ sap.ui.define([
                     name: "",
                     price: 0,
                     stock: 0,
-                    brand_ID: "",
-                    category_ID: ""
+                    brand_ID: null,       // Truyền null để OData v4 nhận diện đúng khóa ngoại
+                    category_ID: null,    // Truyền null
+                    expiryMonth: 12,      // Giá trị mặc định cho cột 유통기한
+                    description: ""       // Giá trị mặc định cho 상세 설명
                 }, true);
 
                 // Focus on the table after creation
@@ -52,10 +54,9 @@ sap.ui.define([
          */
         onCancel: function () {
             var oModel = this.getView().getModel();
-            
-            // Check for uncommitted changes in the OData model
-            if (oModel.hasPendingChanges()) {
-                oModel.resetChanges();
+
+            if (oModel.hasPendingChanges("myUpdateGroup")) {
+                oModel.resetChanges("myUpdateGroup");
                 MessageToast.show("Changes cancelled.");
             } else {
                 MessageToast.show("No pending changes to cancel.");
@@ -81,7 +82,7 @@ sap.ui.define([
                     new Text({
                         text: "선택한 항목을 삭제하시겠습니까?" // Korean: Are you sure you want to delete selected items?
                     }).addStyleClass("sapUiTinyMarginBottom"),
-                    
+
                     new Text({
                         text: "Are you sure you want to delete the selected item(s)?" // Italic English subtitle
                     }).addStyleClass("customSubTextItalic")
@@ -95,17 +96,20 @@ sap.ui.define([
                 emphasizedAction: MessageBox.Action.NO,
                 onClose: function (oAction) {
                     if (oAction === MessageBox.Action.YES) {
-                        // Delete all selected contexts
+                        var aPromises = [];
                         aSelectedItems.forEach(function (oItem) {
                             var oContext = oItem.getBindingContext();
                             if (oContext && oContext.delete) {
-                                oContext.delete();
+                                aPromises.push(oContext.delete());
                             }
                         });
 
-                        // Clear table selection states and notify user
-                        oTable.removeSelections();
-                        MessageToast.show("Deleted successfully.");
+                        Promise.all(aPromises).then(function () {
+                            oTable.removeSelections();
+                            MessageToast.show("Deleted successfully.");
+                        }).catch(function (oError) {
+                            MessageBox.error("Delete failed: " + (oError.message || oError));
+                        });
                     }
                 }
             });
@@ -116,16 +120,15 @@ sap.ui.define([
          */
         onSaveAll: function () {
             var oModel = this.getView().getModel();
+            var oRouter = this.getOwnerComponent().getRouter();
 
-            if (oModel.hasPendingChanges()) {
-                oModel.submitBatch("$auto").then(function () {
-                    MessageToast.show("All changes saved!");
-                }).catch(function (oError) {
-                    MessageToast.show("Save failed: " + oError.message);
-                });
-            } else {
-                MessageToast.show("No changes to save.");
-            }
+            oModel.submitBatch("myUpdateGroup").then(function () {
+                MessageToast.show("All changes saved successfully!");
+
+                oRouter.navTo("RouteMain");
+            }.bind(this)).catch(function (oError) {
+                MessageBox.error("Save failed: " + (oError.message || oError));
+            });
         }
 
     });

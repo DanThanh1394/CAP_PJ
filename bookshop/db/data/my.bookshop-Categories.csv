@@ -1,1 +1,11 @@
-ID,name,createdAt,createdBy,modifiedAt,modifiedBy
+ID,name,books_ID,createdAt,createdBy,modifiedAt,modifiedBy
+19029960-85c8-4d71-9bf1-2ddf7caeac06,name-1902996,714025b7-eaa6-406f-9912-e325b4ae434c,2013-03-08T00:00:00.000Z,createdBy.14sd0@example.com,2016-09-07T00:00:00.000Z,modifiedBy.14sd0@example.org
+27985370-db9e-44f5-99bb-87ed5c166af7,name-27985370,15632631-b959-4f41-876f-9bfe27163dd1,2021-09-18T00:00:00.000Z,createdBy.gntne@example.net,2013-08-31T00:00:00.000Z,modifiedBy.gntne@example.org
+27985371-597e-4c13-bbb5-eef930196e56,name-27985371,15632631-b959-4f41-876f-9bfe27163dd1,2019-08-17T00:00:00.000Z,createdBy.gntnf@example.org,2015-09-12T00:00:00.000Z,modifiedBy.gntnf@example.com
+27985372-282f-40ae-9d39-8a0e6e0592f0,name-27985372,15632631-b959-4f41-876f-9bfe27163dd1,2004-10-19T00:00:00.000Z,createdBy.gntng@example.org,2010-08-29T00:00:00.000Z,modifiedBy.gntng@example.com
+27985373-4d9f-446f-8b57-8e17f78ae39b,name-27985373,15632631-b959-4f41-876f-9bfe27163dd1,2001-11-04T00:00:00.000Z,createdBy.gntnh@example.net,2003-02-03T00:00:00.000Z,modifiedBy.gntnh@example.net
+27985374-1e03-4818-aa71-5d0830855315,name-27985374,15632631-b959-4f41-876f-9bfe27163dd1,2007-07-19T00:00:00.000Z,createdBy.gntni@example.org,2010-06-09T00:00:00.000Z,modifiedBy.gntni@example.org
+27985375-482e-4543-82ab-6009d89f6a9d,name-27985375,15632631-b959-4f41-876f-9bfe27163dd1,2012-10-19T00:00:00.000Z,createdBy.gntnj@example.org,2008-01-29T00:00:00.000Z,modifiedBy.gntnj@example.com
+27985376-a7c5-43cd-b8f6-9cd093d84a3a,name-27985376,15632631-b959-4f41-876f-9bfe27163dd1,2001-11-30T00:00:00.000Z,createdBy.gntnk@example.net,2011-10-29T00:00:00.000Z,modifiedBy.gntnk@example.org
+27985377-f112-4980-b657-f4ad7fd86aee,name-27985377,15632631-b959-4f41-876f-9bfe27163dd1,2021-07-30T00:00:00.000Z,createdBy.gntnl@example.net,2023-12-28T00:00:00.000Z,modifiedBy.gntnl@example.net
+27985378-3fa6-443b-8d94-37da79a74b78,name-27985378,15632631-b959-4f41-876f-9bfe27163dd1,2001-11-18T00:00:00.000Z,createdBy.gntnm@example.org,2015-12-30T00:00:00.000Z,modifiedBy.gntnm@example.org

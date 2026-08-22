@@ -22,25 +22,35 @@ sap.ui.define([
         _onObjectMatched: function (oEvent) {
             const sProductId = oEvent.getParameter("arguments").productId;
             const oView = this.getView();
-            const sPath = `/Products('${sProductId}')`;
+            const sPath = "/Products(" + sProductId + ")"; 
 
             oView.unbindElement();
-
             oView.bindElement({
                 path: sPath,
                 parameters: {
                     $expand: "brand,category"
-                },
-                events: {
-                    dataRequested: function () {
-                        oView.setBusy(true);
-                    },
-                    dataReceived: function () {
-                        oView.setBusy(false);
-                    }
                 }
             });
         },
+        //     const sPath = `/Products('${sProductId}')`;
+
+        //     oView.unbindElement();
+
+        //     oView.bindElement({
+        //         path: sPath,
+        //         parameters: {
+        //             $expand: "brand,category"
+        //         },
+        //         events: {
+        //             dataRequested: function () {
+        //                 oView.setBusy(true);
+        //             },
+        //             dataReceived: function () {
+        //                 oView.setBusy(false);
+        //             }
+        //         }
+        //     });
+        // },
 
         /**
          * Navigates back to the main list or previous browser history state.

@@ -41,10 +41,9 @@
                     <Table 
                         id="tableManageProducts" 
                         mode="MultiSelect"
+                        width="100%"
                         items="{/Products}"
-                        autoPopinMode="false"
-                        width="60rem"> 
-                        <!-- Thiết lập width="60rem" cố định cho Table để ép xuất hiện thanh cuộn ngang khi thu nhỏ browser -->
+                        autoPopinMode="false"> 
 
                         <!-- Table Toolbar -->
                         <headerToolbar>
@@ -56,23 +55,21 @@
                                     text="Add New" 
                                     icon="sap-icon://add" 
                                     type="Emphasized"
-                                    class="customAddRowBtn" 
                                     press=".onAddRow"/>
                                 <Button 
                                     id="btnCancel" 
                                     text="Cancel"
-                                    class="customCancelBtn" 
+                                    type="Transparent" 
                                     press=".onCancel"/>
                                 <Button 
                                     id="btnSaveAll" 
                                     text="Save Changes"
-                                    class="customSaveBtn"
                                     type="Accept" 
                                     press=".onSaveAll"/>
                                 <Button 
                                     id="btnDeleteSelected" 
                                     text="Delete"
-                                    class="customDeleteBtn" 
+                                    type="Reject"
                                     press=".onDeleteSelected"/>
                             </OverflowToolbar>
                         </headerToolbar>
