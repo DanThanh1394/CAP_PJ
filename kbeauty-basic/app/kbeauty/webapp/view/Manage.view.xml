@@ -1,0 +1,152 @@
+<mvc:View
+    id="manageView"
+    controllerName="kbeauty.controller.Manage"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    height="100%">
+
+    <f:DynamicPage id="dynamicPageManage">
+        <!-- Title Header -->
+        <f:title>
+            <f:DynamicPageTitle id="pageTitleManage">
+                <f:heading>
+                    <Title 
+                        id="txtHeaderTitle" 
+                        text="KBeauty Product Management" 
+                        level="H2"
+                        class="customManageTitle"/>
+                </f:heading>
+                <f:navigationActions>
+                    <Button 
+                        id="btnNavBack" 
+                        icon="sap-icon://nav-back" 
+                        tooltip="Back" 
+                        press=".onNavBack"/>
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- Main Content -->
+        <f:content>
+            <VBox id="vboxManageContainer" class="sapUiSmallMargin">
+                <!-- DynamicPageContent / ScrollContainer bọc ngoài giúp giữ kích thước tối thiểu -->
+                <ScrollContainer
+                    id="scrollContainerTable"
+                    width="100%"
+                    horizontal="true"
+                    vertical="false">
+                    
+                    <Table 
+                        id="tableManageProducts" 
+                        mode="MultiSelect"
+                        items="{/Products}"
+                        autoPopinMode="false"
+                        width="60rem"> 
+                        <!-- Thiết lập width="60rem" cố định cho Table để ép xuất hiện thanh cuộn ngang khi thu nhỏ browser -->
+
+                        <!-- Table Toolbar -->
+                        <headerToolbar>
+                            <OverflowToolbar id="toolbarManageTable">
+                                <Title id="txtTableTitle" text="PRODUCTS MANAGEMENT" level="H3"/>
+                                <ToolbarSpacer id="spacerToolbar"/>
+                                <Button 
+                                    id="btnAddRow" 
+                                    text="Add New" 
+                                    icon="sap-icon://add" 
+                                    type="Emphasized"
+                                    class="customAddRowBtn" 
+                                    press=".onAddRow"/>
+                                <Button 
+                                    id="btnCancel" 
+                                    text="Cancel"
+                                    class="customCancelBtn" 
+                                    press=".onCancel"/>
+                                <Button 
+                                    id="btnSaveAll" 
+                                    text="Save Changes"
+                                    class="customSaveBtn"
+                                    type="Accept" 
+                                    press=".onSaveAll"/>
+                                <Button 
+                                    id="btnDeleteSelected" 
+                                    text="Delete"
+                                    class="customDeleteBtn" 
+                                    press=".onDeleteSelected"/>
+                            </OverflowToolbar>
+                        </headerToolbar>
+
+                    <!-- Table Columns -->
+                        <columns>
+                            <Column id="colProductID" width="9rem">
+                                <Text id="txtColProductID" text="상품 코드 (ID)"/>
+                            </Column>
+                            <Column id="colProductName" width="13rem">
+                                <Text id="txtColProductName" text="상품명"/>
+                            </Column>
+                            <Column id="colProductPrice" width="8rem">
+                                <Text id="txtColProductPrice" text="가격"/>
+                            </Column>
+                            <Column id="colProductStock" width="7rem">
+                                <Text id="txtColProductStock" text="재고 수량"/>
+                            </Column>
+                            <Column id="colProductBrand" width="10rem">
+                                <Text id="txtColProductBrand" text="브랜드"/>
+                            </Column>
+                            <Column id="colProductCategory" width="10rem">
+                                <Text id="txtColProductCategory" text="카테고리"/>
+                            </Column>
+                        </columns>
+
+                        <!-- Table Items Template -->
+                         <!-- neu ID co gia tri thi editable = falsecon nguoc lai se la true -->
+                        <items>
+                            <ColumnListItem id="itemManageProductRow">
+                                <cells>
+                                    <Input 
+                                        id="inpProductID" 
+                                        value="{ID}" 
+                                        editable="{= ${@$ui5.context.isTransient} === true }"
+                                        placeholder="Enter ID..."/>
+                                        
+                                    <Input 
+                                        id="inpProductName" 
+                                        value="{name}"
+                                        placeholder="Enter Product Name..."/>
+                                        
+                                    <Input 
+                                        id="inpProductPrice" 
+                                        value="{price}"
+                                        type="Number"
+                                        placeholder="0"/>
+                                        
+                                    <Input 
+                                        id="inpProductStock" 
+                                        value="{stock}"
+                                        type="Number"
+                                        placeholder="0"/>
+                                        
+                                    <ComboBox 
+                                        id="cmbProductBrand" 
+                                        selectedKey="{brand_ID}" 
+                                        items="{/Brands}">
+                                        <core:Item id="itemManageBrand" key="{ID}" text="{name}"/>
+                                    </ComboBox>
+                                    
+                                    <ComboBox 
+                                        id="cmbProductCategory" 
+                                        selectedKey="{category_ID}" 
+                                        items="{/Categories}">
+                                        <core:Item id="itemManageCategory" key="{ID}" text="{name}"/>
+                                    </ComboBox>
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </ScrollContainer>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
