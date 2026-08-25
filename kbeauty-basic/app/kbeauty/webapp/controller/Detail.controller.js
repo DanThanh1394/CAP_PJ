@@ -32,29 +32,6 @@ sap.ui.define([
                 }
             });
         },
-        //     const sPath = `/Products('${sProductId}')`;
-
-        //     oView.unbindElement();
-
-        //     oView.bindElement({
-        //         path: sPath,
-        //         parameters: {
-        //             $expand: "brand,category"
-        //         },
-        //         events: {
-        //             dataRequested: function () {
-        //                 oView.setBusy(true);
-        //             },
-        //             dataReceived: function () {
-        //                 oView.setBusy(false);
-        //             }
-        //         }
-        //     });
-        // },
-
-        /**
-         * Navigates back to the main list or previous browser history state.
-         */
         onNavBack: function () {
             const oHistory = History.getInstance();
             const sPreviousHash = oHistory.getPreviousHash();

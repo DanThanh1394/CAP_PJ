@@ -134,8 +134,11 @@ sap.ui.define([
             if (oTable) {
                 const oBinding = oTable.getBinding("rows");
                 if (oBinding) {
-                    // Force refresh dữ liệu OData V4 từ Server
+                    // Refresh cấp độ Binding của Bảng
                     oBinding.refresh();
+                } else {
+                    // Trường hợp Binding chưa sẵn sàng, refresh cấp độ Model
+                    this.getView().getModel().refresh();
                 }
             }
         }
