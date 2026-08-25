@@ -123,13 +123,17 @@ sap.ui.define([
             var oRouter = this.getOwnerComponent().getRouter();
 
             oModel.submitBatch("myUpdateGroup").then(function () {
-                MessageToast.show("All changes saved successfully!");
+            MessageToast.show("All changes saved successfully!");
 
-                oRouter.navTo("RouteMain");
-            }.bind(this)).catch(function (oError) {
-                MessageBox.error("Save failed: " + (oError.message || oError));
-            });
-        }
+            // Refresh toàn bộ Model để hủy cache và load lại toàn bộ Navigation Properties ($expand)
+            oModel.refresh();
+
+            // Chuyển hướng về Main View
+            oRouter.navTo("RouteMain");
+        }.bind(this)).catch(function (oError) {
+            MessageBox.error("Save failed: " + (oError.message || oError));
+        });
+    }
 
     });
 });

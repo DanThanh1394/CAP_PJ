@@ -223,8 +223,8 @@
                         </uit:Column>
 
                         <!-- Expiry Month Column -->
-                        <uit:Column id="colExpiryMonth" width="6rem" hAlign="Center">
-                            <Label id="lblColExpiryMonth" text="유통기한 (월)" />
+                        <uit:Column id="colManageExpiryMonth" width="6rem" hAlign="Center">
+                            <Text id="txtColManageExpiryMonth" text="유통기한 (월)" />
                             <uit:template>
                                 <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
                             </uit:template>
@@ -247,8 +247,8 @@
                         </uit:Column>
 
                         <!-- Description Column -->
-                        <uit:Column id="colDescription" width="12rem" hAlign="Center">
-                            <Label id="lblColDescription" text="상세 설명" />
+                        <uit:Column id="colManageDescription" width="12rem" hAlign="Center">
+                            <Text id="txtColManageDescription" text="상세 설명" />
                             <uit:template>
                                 <Text id="txtCellDescription" text="{description}" wrapping="false"/>
                             </uit:template>
