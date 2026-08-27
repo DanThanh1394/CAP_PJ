@@ -116,12 +116,48 @@ sap.ui.define([
         },
 
         /**
-         * Submit all pending batch updates to the backend
+         * Submit all pending batch updates to the backend with confirmation dialog
          */
         onSaveAll: function () {
             var oModel = this.getView().getModel();
             var oRouter = this.getOwnerComponent().getRouter();
 
+<<<<<<< HEAD
+            if (!oModel.hasPendingChanges("myUpdateGroup")) {
+                MessageToast.show("No changes to save.");
+                return;
+            }
+
+            var oDialogContent = new VBox({
+                items: [
+                    new Text({
+                        text: "변경 사항을 저장하시겠습니까?"
+                    }).addStyleClass("sapUiTinyMarginBottom"),
+
+                    new Text({
+                        text: "Are you sure you want to save these changes?"
+                    }).addStyleClass("customSubTextItalic")
+                ]
+            });
+
+            MessageBox.confirm(oDialogContent, {
+                title: "Confirm Save",
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL], // Đổi SAVE thành OK
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function (oAction) {
+                    if (oAction === MessageBox.Action.OK) {
+                        oModel.submitBatch("myUpdateGroup").then(function () {
+                            MessageToast.show("All changes saved successfully!");
+                            oModel.resetChanges("myUpdateGroup");
+                            oRouter.navTo("RouteMain");
+                        }).catch(function (oError) {
+                            MessageBox.error("Save failed: " + (oError.message || oError));
+                        });
+                    }
+                }.bind(this)
+            });
+        }
+=======
             oModel.submitBatch("myUpdateGroup").then(function () {
             MessageToast.show("All changes saved successfully!");
 
@@ -134,6 +170,7 @@ sap.ui.define([
             MessageBox.error("Save failed: " + (oError.message || oError));
         });
     }
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
     });
 });

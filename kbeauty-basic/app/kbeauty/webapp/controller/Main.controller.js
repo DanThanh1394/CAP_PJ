@@ -129,16 +129,39 @@ sap.ui.define([
          * 
          * @private
          */
+        // _onRouteMatched: function () {
+        //     const oTable = this.byId("productTable");
+        //     if (oTable) {
+        //         const oBinding = oTable.getBinding("rows");
+        //         if (oBinding) {
+        //             // Force refresh dữ liệu OData V4 từ Server
+        //             oBinding.refresh();
+
+        //             if (oBinding.getHeaderContext()) {
+        //                 oBinding.getHeaderContext().requestRefresh();
+        //             }
+        //         }
+        //     }
+        // }
         _onRouteMatched: function () {
             const oTable = this.byId("productTable");
             if (oTable) {
                 const oBinding = oTable.getBinding("rows");
                 if (oBinding) {
+<<<<<<< HEAD
+                    oTable.bindRows({
+                        path: "/Products",
+                        parameters: {
+                            $expand: "brand,category"
+                        }
+                    });
+=======
                     // Refresh cấp độ Binding của Bảng
                     oBinding.refresh();
                 } else {
                     // Trường hợp Binding chưa sẵn sàng, refresh cấp độ Model
                     this.getView().getModel().refresh();
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
                 }
             }
         }

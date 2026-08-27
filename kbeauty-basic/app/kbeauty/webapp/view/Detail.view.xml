@@ -2,10 +2,11 @@
     controllerName="kbeauty.controller.Detail"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:f="sap.f">
+    xmlns:f="sap.f"
+    height="100%"
+    displayBlock="true">
 
     <f:DynamicPage id="detailPage">
-        <!-- HEADER -->
         <f:title>
             <f:DynamicPageTitle id="idDetailTitle">
                 <f:heading>
@@ -21,7 +22,6 @@
             </f:DynamicPageTitle>
         </f:title>
 
-        <!-- CONTENT SECTION -->
         <f:content>
             <VBox id="idDetailVBox" class="sapUiSmallMargin">
                 <ObjectHeader

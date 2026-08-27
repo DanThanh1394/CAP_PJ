@@ -3,18 +3,16 @@
     height="100%"
     displayBlock="true"
     xmlns="sap.m"
-    xmlns:m="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core"
-    xmlns:uit="sap.ui.table"
     xmlns:mdc="sap.ui.mdc"
     xmlns:mdcvh="sap.ui.mdc.valuehelp"
     xmlns:mdcvhc="sap.ui.mdc.valuehelp.content"
-    xmlns:vm="sap.ui.fl.variants">
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:uit="sap.ui.table">
 
-    <f:DynamicPage id="page">
-        <!-- Dynamic page title header with variant management -->
+    <f:DynamicPage id="page" fitContentWithPadding="true">
         <f:title>
             <f:DynamicPageTitle id="idDynamicPageTitle">
                 <f:heading>
@@ -31,7 +29,6 @@
             </f:DynamicPageTitle>
         </f:title>
 
-        <!-- Dynamic page header containing MDC filter bar -->
         <f:header>
             <f:DynamicPageHeader id="idDynamicPageHeader" pinnable="true">
                 <mdc:FilterBar 
@@ -41,7 +38,6 @@
                     search=".onFilterSearch"
                     class="customMdcFilterBar">
                     
-                    <!-- Basic search field for product name -->
                     <mdc:basicSearchField>
                         <mdc:FilterField 
                             id="idBasicSearch"
@@ -53,7 +49,6 @@
                             maxConditions="1"/>
                     </mdc:basicSearchField>
 
-                    <!-- Filter fields for Brand and Category with Korean labels -->
                     <mdc:filterItems>
                         <mdc:FilterField
                             id="ffBrand"
@@ -75,11 +70,9 @@
                     </mdc:filterItems>
 
                     <mdc:dependents>
-                        <!-- Value help dialog structure for brand selection -->
                         <mdc:ValueHelp id="vhBrand">
                             <mdc:dialog>
                                 <mdcvh:Dialog id="dlgBrand" title="Select Brand">
-
                                     <mdcvhc:MTable
                                         id="vhContentBrandTable"
                                         title="Brands"
@@ -109,7 +102,6 @@
                             </mdc:dialog>
                         </mdc:ValueHelp>
 
-                        <!-- Value help dialog structure for category selection -->
                         <mdc:ValueHelp id="vhCategory">
                             <mdc:dialog>
                                 <mdcvh:Dialog id="dlgCategory" title="Select Category">
@@ -146,82 +138,80 @@
             </f:DynamicPageHeader>
         </f:header>
 
-        <!-- Main content area containing UI table grid -->
         <f:content>
-            <VBox id="idMainVBox" fitContainer="true">
-                
-                <!-- Grid table for product details -->
-                <uit:Table
-                    id="productTable"
-                    rows="{
-                        path: '/Products',
-                        parameters: {
-                            $expand: 'brand,category'
-                        }
-                    }"
-                    selectionMode="MultiToggle"
-                    rowActionCount="1">
-                    <uit:extension>
-                        <OverflowToolbar id="idTableToolbar">
-                            <Title id="idTableTitle" text="PRODUCTS INFORMATION" level="H2" class="customTitleColor"/>
-                           
-                            <ToolbarSpacer id="tbSpacer"/>
-                            <Button 
-                                id="idBtnAddProduct"
-                                text="Add Product"
-                                type="Emphasized"
-                                press=".onAddProductPress"/>
-                        </OverflowToolbar>
-                    </uit:extension>
+            <uit:Table
+                id="productTable"
+                rows="{
+                    path: '/Products',
+                    parameters: {
+                        $expand: 'brand,category'
+                    }
+                }"
+                selectionMode="MultiToggle"
+                visibleRowCountMode="Auto"
+                rowActionCount="1">
+                <uit:extension>
+                    <OverflowToolbar id="idTableToolbar">
+                        <Title id="idTableTitle" text="PRODUCTS INFORMATION" level="H2" class="customTitleColor"/>
+                        <ToolbarSpacer id="tbSpacer"/>
+                        <Button 
+                            id="idBtnAddProduct"
+                            text="Add Product"
+                            type="Emphasized"
+                            press=".onAddProductPress"/>
+                    </OverflowToolbar>
+                </uit:extension>
 
-                    <!-- Table columns with Korean labels -->
-                    <uit:columns>
-                        <!-- ID Column -->
-                        <uit:Column id="colID" width="9rem" hAlign="Center">
-                            <Label id="lblColID" text="상품 코드 (ID)" />
-                            <uit:template>
-                                <Text id="txtCellID" text="{ID}" wrapping="false"/>
-                            </uit:template>
-                        </uit:Column>
+                <uit:columns>
+                    <uit:Column id="colID" width="9rem" hAlign="Center">
+                        <Label id="lblColID" text="상품 코드 (ID)" />
+                        <uit:template>
+                            <Text id="txtCellID" text="{ID}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
 
-                        <!-- Name Column -->
-                        <uit:Column id="colName" width="12rem" hAlign="Center">
-                            <Label id="lblColName" text="상품명" />
-                            <uit:template>
-                                <Text id="txtCellName" text="{name}" wrapping="false"/>
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colName" width="12rem" hAlign="Center">
+                        <Label id="lblColName" text="상품명" />
+                        <uit:template>
+                            <Text id="txtCellName" text="{name}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
 
-                        <!-- Price Column -->
-                        <uit:Column id="colPrice" width="9rem" hAlign="Center">
-                            <m:Label id="lblColPrice" text="가격" />
-                            <uit:template>
-                                <m:Text id="txtCellPrice" text="₩ {price}" wrapping="false"/>
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colPrice" width="9rem" hAlign="Center">
+                        <Label id="lblColPrice" text="가격" />
+                        <uit:template>
+                            <Text id="txtCellPrice" text="₩ {price}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
 
-                        <!-- Stock Column -->
-                        <uit:Column id="colStock" width="6rem" hAlign="Center">
-                            <m:Label id="lblColStock" text="재고 수량" />
-                            <uit:template>
-                               <m:ObjectStatus 
-                                    id="objStatusStock" 
-                                    text="{stock}" 
-                                    state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colStock" width="6rem" hAlign="Center">
+                        <Label id="lblColStock" text="재고 수량" />
+                        <uit:template>
+                            <ObjectStatus 
+                                id="objStatusStock" 
+                                text="{stock}" 
+                                state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
+                        </uit:template>
+                    </uit:Column>
 
-                        <!-- Status Column -->
-                        <uit:Column id="colStatus" width="9rem" hAlign="Center">
-                            <m:Label id="lblColStatus" text="상태" />
-                            <uit:template>
-                                <m:ObjectStatus 
-                                    id="objStatus"
-                                    text="{= Number(${stock}) === 0 ? 'OutOfStock' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}"
-                                    state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colStatus" width="9rem" hAlign="Center">
+                        <Label id="lblColStatus" text="상태" />
+                        <uit:template>
+                            <ObjectStatus 
+                                id="objStatus"
+                                text="{= Number(${stock}) === 0 ? 'OutOfStock' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}"
+                                state="{= Number(${stock}) === 0 ? 'Error' : (Number(${stock}) &lt;= 20 ? 'Warning' : 'Success')}" />
+                        </uit:template>
+                    </uit:Column>
 
+<<<<<<< HEAD
+                    <uit:Column id="colMainExpiryMonth" width="6rem" hAlign="Center">
+                        <Label id="lblColMainExpiryMonth" text="유통기한 (월)" />
+                        <uit:template>
+                            <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
+=======
                         <!-- Expiry Month Column -->
                         <uit:Column id="colManageExpiryMonth" width="6rem" hAlign="Center">
                             <Text id="txtColManageExpiryMonth" text="유통기한 (월)" />
@@ -229,23 +219,31 @@
                                 <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
                             </uit:template>
                         </uit:Column>
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
-                        <!-- Brand Column -->
-                        <uit:Column id="colBrand" width="9rem" hAlign="Center" >
-                            <Label id="lblColBrand" text="브랜드" />
-                            <uit:template>
-                                <Text id="txtCellBrand" text="{brand/name}" wrapping="false"/>
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colBrand" width="9rem" hAlign="Center">
+                        <Label id="lblColBrand" text="브랜드" />
+                        <uit:template>
+                            <Text id="txtCellBrand" text="{brand/name}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
 
-                        <!-- Category Column -->
-                        <uit:Column id="colCategory" width="9rem" hAlign="Center">
-                            <Label id="lblColCategory" text="카테고리" />
-                            <uit:template>
-                                <Text id="txtCellCategory" text="{category/name}" wrapping="false"/>
-                            </uit:template>
-                        </uit:Column>
+                    <uit:Column id="colCategory" width="9rem" hAlign="Center">
+                        <Label id="lblColCategory" text="카테고리" />
+                        <uit:template>
+                            <Text id="txtCellCategory" text="{category/name}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
 
+<<<<<<< HEAD
+                    <uit:Column id="colMainDescription" width="12rem" hAlign="Center">
+                        <Label id="lblColMainDescription" text="상세 설명" />
+                        <uit:template>
+                            <Text id="txtCellDescription" text="{description}" wrapping="false"/>
+                        </uit:template>
+                    </uit:Column>
+                </uit:columns>
+=======
                         <!-- Description Column -->
                         <uit:Column id="colManageDescription" width="12rem" hAlign="Center">
                             <Text id="txtColManageDescription" text="상세 설명" />
@@ -254,21 +252,19 @@
                             </uit:template>
                         </uit:Column>
                     </uit:columns>
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
-                    <!-- Navigation row action template -->
-                    <uit:rowActionTemplate>
-                        <uit:RowAction id="idRowAction">
-                            <uit:items>
-                                <uit:RowActionItem
-                                    id="idRowActionItemNav"
-                                    type="Navigation"
-                                    press=".onRowNavigationPress" />
-                            </uit:items>
-                        </uit:RowAction>
-                    </uit:rowActionTemplate>
-                </uit:Table>
-
-            </VBox>
+                <uit:rowActionTemplate>
+                    <uit:RowAction id="idRowAction">
+                        <uit:items>
+                            <uit:RowActionItem
+                                id="idRowActionItemNav"
+                                type="Navigation"
+                                press=".onRowNavigationPress" />
+                        </uit:items>
+                    </uit:RowAction>
+                </uit:rowActionTemplate>
+            </uit:Table>
         </f:content>
     </f:DynamicPage>
 </mvc:View>
