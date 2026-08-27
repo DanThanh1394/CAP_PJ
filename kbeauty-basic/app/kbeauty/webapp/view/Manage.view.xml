@@ -76,17 +76,20 @@
 
                     <!-- Table Columns -->
                         <columns>
-                            <Column id="colProductID" width="9rem">
+                            <Column id="colProductID" width="8rem">
                                 <Text id="txtColProductID" text="상품 코드 (ID)"/>
                             </Column>
-                            <Column id="colProductName" width="13rem">
+                            <Column id="colProductName" width="12rem">
                                 <Text id="txtColProductName" text="상품명"/>
                             </Column>
-                            <Column id="colProductPrice" width="8rem">
+                            <Column id="colProductPrice" width="7rem">
                                 <Text id="txtColProductPrice" text="가격"/>
                             </Column>
                             <Column id="colProductStock" width="7rem">
                                 <Text id="txtColProductStock" text="재고 수량"/>
+                            </Column>
+                            <Column id="colExpiryMonth" width="7rem">
+                                <Text id="txtColExpiryMonth" text="유통기한 (월)"/>
                             </Column>
                             <Column id="colProductBrand" width="10rem">
                                 <Text id="txtColProductBrand" text="브랜드"/>
@@ -94,6 +97,10 @@
                             <Column id="colProductCategory" width="10rem">
                                 <Text id="txtColProductCategory" text="카테고리"/>
                             </Column>
+                            <Column id="colDescription" width="12rem">
+                                <Text id="txtColDescription" text="상세 설명"/>
+                            </Column>
+
                         </columns>
 
                         <!-- Table Items Template -->
@@ -122,6 +129,12 @@
                                         value="{stock}"
                                         type="Number"
                                         placeholder="0"/>
+
+                                    <Input 
+                                        id="inpExpiryMonth" 
+                                        value="{expiryMonth}"
+                                        type="Number"
+                                        placeholder="Months"/>
                                         
                                     <ComboBox 
                                         id="cmbProductBrand" 
@@ -136,6 +149,11 @@
                                         items="{path: '/Categories'}">
                                         <core:Item id="itemManageCategory" key="{ID}" text="{name}"/>
                                     </ComboBox>
+
+                                    <Input 
+                                        id="inpDescription" 
+                                        value="{description}"
+                                        placeholder="Description..."/>
 
                                 </cells>
                             </ColumnListItem>

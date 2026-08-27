@@ -204,12 +204,22 @@
                         </uit:template>
                     </uit:Column>
 
+<<<<<<< HEAD
                     <uit:Column id="colMainExpiryMonth" width="6rem" hAlign="Center">
                         <Label id="lblColMainExpiryMonth" text="유통기한 (월)" />
                         <uit:template>
                             <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
                         </uit:template>
                     </uit:Column>
+=======
+                        <!-- Expiry Month Column -->
+                        <uit:Column id="colManageExpiryMonth" width="6rem" hAlign="Center">
+                            <Text id="txtColManageExpiryMonth" text="유통기한 (월)" />
+                            <uit:template>
+                                <Text id="txtCellExpiryMonth" text="{expiryMonth}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
                     <uit:Column id="colBrand" width="9rem" hAlign="Center">
                         <Label id="lblColBrand" text="브랜드" />
@@ -225,6 +235,7 @@
                         </uit:template>
                     </uit:Column>
 
+<<<<<<< HEAD
                     <uit:Column id="colMainDescription" width="12rem" hAlign="Center">
                         <Label id="lblColMainDescription" text="상세 설명" />
                         <uit:template>
@@ -232,6 +243,16 @@
                         </uit:template>
                     </uit:Column>
                 </uit:columns>
+=======
+                        <!-- Description Column -->
+                        <uit:Column id="colManageDescription" width="12rem" hAlign="Center">
+                            <Text id="txtColManageDescription" text="상세 설명" />
+                            <uit:template>
+                                <Text id="txtCellDescription" text="{description}" wrapping="false"/>
+                            </uit:template>
+                        </uit:Column>
+                    </uit:columns>
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
                 <uit:rowActionTemplate>
                     <uit:RowAction id="idRowAction">

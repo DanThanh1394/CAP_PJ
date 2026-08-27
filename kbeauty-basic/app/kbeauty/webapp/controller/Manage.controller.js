@@ -122,6 +122,7 @@ sap.ui.define([
             var oModel = this.getView().getModel();
             var oRouter = this.getOwnerComponent().getRouter();
 
+<<<<<<< HEAD
             if (!oModel.hasPendingChanges("myUpdateGroup")) {
                 MessageToast.show("No changes to save.");
                 return;
@@ -156,6 +157,20 @@ sap.ui.define([
                 }.bind(this)
             });
         }
+=======
+            oModel.submitBatch("myUpdateGroup").then(function () {
+            MessageToast.show("All changes saved successfully!");
+
+            // Refresh toàn bộ Model để hủy cache và load lại toàn bộ Navigation Properties ($expand)
+            oModel.refresh();
+
+            // Chuyển hướng về Main View
+            oRouter.navTo("RouteMain");
+        }.bind(this)).catch(function (oError) {
+            MessageBox.error("Save failed: " + (oError.message || oError));
+        });
+    }
+>>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
 
     });
 });
