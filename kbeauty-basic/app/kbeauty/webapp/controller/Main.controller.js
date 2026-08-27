@@ -148,20 +148,12 @@ sap.ui.define([
             if (oTable) {
                 const oBinding = oTable.getBinding("rows");
                 if (oBinding) {
-<<<<<<< HEAD
                     oTable.bindRows({
                         path: "/Products",
                         parameters: {
                             $expand: "brand,category"
                         }
                     });
-=======
-                    // Refresh cấp độ Binding của Bảng
-                    oBinding.refresh();
-                } else {
-                    // Trường hợp Binding chưa sẵn sàng, refresh cấp độ Model
-                    this.getView().getModel().refresh();
->>>>>>> 1bc7eb22a675ee1e561f02c15651420e446c8a47
                 }
             }
         }
