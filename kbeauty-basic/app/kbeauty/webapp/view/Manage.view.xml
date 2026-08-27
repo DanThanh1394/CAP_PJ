@@ -126,14 +126,14 @@
                                     <ComboBox 
                                         id="cmbProductBrand" 
                                         selectedKey="{brand_ID}" 
-                                        items="{/Brands}">
+                                        items="{path: '/Brands'}">
                                         <core:Item id="itemManageBrand" key="{ID}" text="{name}"/>
                                     </ComboBox>
                                     
                                     <ComboBox 
                                         id="cmbProductCategory" 
                                         selectedKey="{category_ID}" 
-                                        items="{/Categories}">
+                                        items="{path: '/Categories'}">
                                         <core:Item id="itemManageCategory" key="{ID}" text="{name}"/>
                                     </ComboBox>
 
